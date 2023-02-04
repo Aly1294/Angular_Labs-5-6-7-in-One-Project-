@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-3">
+        <img *ngIf="item.poster_path" [src]="'https://image.tmdb.org/t/p/w500/'+item.poster_path" alt="" class="w-100">
+        <img *ngIf="item.profile_path" [src]="'https://image.tmdb.org/t/p/w500/'+item.profile_path" alt="" class="w-100">
+
+    </div>
+    <div class="col-md-9 d-flex align-items-center ">
+        <div>
+            <h3 class="h6 my-2">{{item.title}} {{item.name}}</h3>
+            <p class="py-2 text-muted">{{item.overview}}</p>
+            <h6 *ngIf="item.vote_count">Vote_Count : {{item.vote_count}}</h6>
+            <h6 *ngIf="item.vote_average">Vote_Average : {{item.vote_average}}</h6>
+        </div>
+    </div>
+</div>
+
+<div class="row py-5">
+    <div *ngFor="let item of similarMovies" class="col-md-2">
+        <div (click)="getSimilar(item.id,mediaType)" class="item position-relative">
+            
+                <img *ngIf="item.poster_path" [src]="'https://image.tmdb.org/t/p/w500/'+item.poster_path" alt="" class="w-100">
+                <img *ngIf="item.profile_path" [src]="'https://image.tmdb.org/t/p/w500/'+item.profile_path" alt="" class="w-100">
+                <h3 class="h6 my-2">{{item.title}} {{item.name}}</h3>
+                <div *ngIf="item.vote_average" class="vote position-absolute top-0 p-2 end-0 text-white">{{item.vote_average.toFixed(1)}}</div>
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div  class="w-75 mx-auto py-3">
+
+    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm(loginForm)">
+        
+
+        <label for="email">email :</label>
+        <input type="email" formControlName="email" class="form-control mb-2 input-mine" name="" id="">
+        <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched" class="alert alert-danger pt-2">
+            <p class="m-0" *ngIf="loginForm.get('email')?.getError('required')">email is required</p>
+            <p class="m-0" *ngIf="loginForm.get('email')?.getError('email')">must be valid email </p>
+        </div>
+
+
+        
+        <label for="password">password :</label>
+        <input type="password" formControlName="password" class="form-control mb-2 input-mine" name="" id="">
+        <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="alert alert-danger pt-2">
+            <p class="m-0" *ngIf="loginForm.get('password')?.getError('required')">password is required</p>
+            <p class="m-0" *ngIf="loginForm.get('password')?.getError('pattern')">password must be capitalized</p>
+        </div>
+        
+        <button [disabled]="loginForm.invalid" tybe="submit" class="btn btn-info">
+            <span *ngIf="!isloading" >Login</span>
+            <i  class="fas fa-spinner fa-spin"></i>
+        </button>
+    </form>
+
+</div>
